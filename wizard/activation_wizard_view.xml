@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="product_activate_license_form" model="ir.ui.view">
+        <field name="name">product.activate.license</field>
+        <field name="model">ir.module.module.activation</field>
+        <field name="arch" type="xml">
+            <form string="Activate">
+                <separator string="Enter Product License"/>
+                <field name="license"/>
+                <footer class="pull-right">
+                    <button string="Cancel" class="oe_link" special="cancel"/>
+                    or
+                    <button string='Activate' name="activate_product" type="object" class="oe_highlight"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="product_activate_license_action" model="ir.actions.act_window">
+        <field name="name">Activate</field>
+        <field name="res_model">ir.module.module.activation</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="product_activate_license_form"/>
+        <field name="target">new</field>
+    </record>
+
+</odoo>

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="view_ir_module_module_inherited" model="ir.ui.view">
+            <field name="name">view.ir.module.module.inherited</field>
+            <field name="model">ir.module.module</field>
+            <field name="inherit_id" ref="base.module_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//button[@name='button_immediate_upgrade']" position="after">
+                    <button name="open_activation_wizard" string="Activate" type="object" class="btn btn-primary"
+                            states="license"/>
+                </xpath>
+                <xpath expr="//button[@name='button_uninstall']" position="attributes">
+                    <attribute name="states">installed,license</attribute>
+                </xpath>
+            </field>
+        </record>
+
+    </data>
+</odoo>

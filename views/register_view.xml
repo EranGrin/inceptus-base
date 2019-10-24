@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+	<data noupdate="1">
+
+		<record id="base.open_menu" model="ir.actions.todo">
+			<field name="action_id" ref="product_activate_license_action" />
+			<field name="state">open</field>
+			<field name="type">automatic</field>
+		</record>
+	</data>
+</odoo>
