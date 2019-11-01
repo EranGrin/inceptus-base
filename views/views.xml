@@ -11,7 +11,7 @@
                     <button name="open_activation_wizard" string="Activate" type="object" class="btn btn-primary"
                             states="license"/>
                 </xpath>
-                <xpath expr="//button[@name='button_uninstall']" position="attributes">
+                <xpath expr="//button[@name='button_uninstall_wizard']" position="attributes">
                     <attribute name="states">installed,license</attribute>
                 </xpath>
             </field>

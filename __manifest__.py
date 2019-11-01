@@ -13,7 +13,7 @@
     'website': "http://www.inceptus.io",
 
     'category': 'tools',
-    'version': '0.1',
+    'version': '13.0.0.1',
 
     'depends': ['base'],
 

@@ -2,8 +2,10 @@
 
 from odoo import models, fields, api, _
 from odoo.exceptions import ValidationError
-import httplib, urllib
+# import httplib
+import urllib
 import json
+import http
 
 
 class ConfigWiz(models.TransientModel):
@@ -16,11 +18,11 @@ class Activation(models.TransientModel):
 
     license = fields.Char('License', required=1)
 
-    @api.multi
+    # @api.multi
     def activate_product(self):
         module_id = self.env.context.get('active_id')
         module_rec = self.env['ir.module.module'].browse(module_id)
-        params = urllib.urlencode({
+        params = urllib.parse.urlencode({
             'edd_action': 'activate_license',
             'license': self.license,
             'item_name': module_rec.shortdesc,
@@ -28,7 +30,7 @@ class Activation(models.TransientModel):
         })
         headers = {"Content-type": "application/x-www-form-urlencoded", "Accept": "text/plain"}
         url = self.env['ir.config_parameter'].get_param('ies.module.activate.url')
-        conn = httplib.HTTPConnection(url)
+        conn = http.client.HTTPConnection(url)
         conn.request("POST", "/edd-sl", params, headers)
         response = conn.getresponse()
         sl_data = response.read()

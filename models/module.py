@@ -43,15 +43,17 @@ class Module(models.Model):
     state = fields.Selection(STATES, string='Status', default='uninstalled', readonly=True, index=True)
     checksum = fields.Char('Checksum')
 
-    @api.multi
+    # @api.model
     def open_activation_wizard(self):
+        view_id = self.env.ref('inceptus-base.product_activate_license_form').id
         return {
             'name': _('Activate'),
             'type': 'ir.actions.act_window',
-            'view_type': 'form',
             'view_mode': 'form',
             'res_model': 'ir.module.module.activation',
             'target': 'new',
+            'view_id': view_id,
+            'context': dict(self.env.context),
         }
 
     @staticmethod
@@ -73,7 +75,7 @@ class Module(models.Model):
             'url': terp.get('url') or terp.get('live_test_url', ''),
         }
 
-    @api.multi
+    @api.model
     def _button_immediate_function(self, function):
         pass_flag = False
         for rec in self:
@@ -84,7 +86,7 @@ class Module(models.Model):
             return True
         return super(Module, self)._button_immediate_function(function)
 
-    @api.multi
+    @api.model
     def module_uninstall(self):
         for rec in self:
             if rec.name == 'ies_base':
