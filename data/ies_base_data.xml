@@ -2,8 +2,8 @@
 <odoo>
     <data noupdate="1">
 
-        <record id="ies_module_activate_url" model="ir.config_parameter">
-            <field name="key">ies.module.activate.url</field>
+        <record id="inceptus_module_activate_url" model="ir.config_parameter">
+            <field name="key">inceptus.module.activate.url</field>
             <field name="value">www.ease-tec.com</field>
         </record>
 

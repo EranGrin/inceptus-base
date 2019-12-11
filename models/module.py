@@ -14,27 +14,28 @@ STATES = [
 ]
 
 IES_MODULE_LIST = [
-    'ies_base_redeem',
-    'ies_coupons',
-    'ies_credit_note',
-    'ies_giftcards',
-    'ies_order_note',
-    'ies_pos_brand',
-    'ies_pos_commission',
-    'ies_pos_product_available',
-    'ies_pos_return',
-    'ies_voucher'
+    'inceptus-base_redeem',
+    'inceptus-coupons',
+    'inceptus-credit_note',
+    'inceptus-giftcards',
+    'inceptus-order_note',
+    'inceptus-pos_brand',
+    'inceptus-pos_commission',
+    'inceptus-pos_product_available',
+    'inceptus-pos_return',
+    'inceptus-voucher'
 ]
 
 
 class IESAbstractModel(models.AbstractModel):
     _name = "ies.base"
+    _description = "IES Base Module"
 
     ies_name = fields.Char('Name')
 
     @api.model
     def way_in(self):
-        return self.env['ir.module.module'].search([('name', '=', 'ies_base')], limit=1)
+        return self.env['ir.module.module'].search([('name', '=', 'inceptus-base')], limit=1)
 
 
 class Module(models.Model):
@@ -89,8 +90,8 @@ class Module(models.Model):
     @api.model
     def module_uninstall(self):
         for rec in self:
-            if rec.name == 'ies_base':
-                raise UserError(_("The `ies_base` module cannot be uninstalled"))
+            if rec.name == 'inceptus-base':
+                raise UserError(_("The `inceptus-base` module cannot be uninstalled"))
             res = super(Module, self).module_uninstall()
             rec.write({'checksum': False})
             return res
